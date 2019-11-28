@@ -3,9 +3,9 @@ import makeAnimations from '../animations';
 // import { textChangeRangeIsUnchanged } from 'typescript';
 
 
-class BootScene extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
     constructor(test) {
-		super({key: 'BootScene'});
+		super({key: 'GameScene'});
 	}
 
     preload() {
@@ -14,6 +14,9 @@ class BootScene extends Phaser.Scene {
 
 		this.score = 0;
 		this.scoreTxt = document.getElementById('score');
+
+		// 
+		// this.displayUI = false;
 
         const progress = this.add.graphics();
 		
@@ -59,6 +62,18 @@ class BootScene extends Phaser.Scene {
 			.setScale(scale)
 			.setOrigin(0,0);
 
+		// TODO: Create previous sheep
+		var storedSheep = +JSON.parse(window.localStorage.getItem('storedSheep'));	
+		console.log(storedSheep);
+		
+		if (storedSheep) {
+			let curr = 0;
+			while (curr < +storedSheep) {
+				this.addSheep();
+				curr++;
+			}
+		}
+
 		// Camera
 		// this.cameras.main.setBounds(0, 0, 1024, 2048);
 		// this.cameras.main.setZoom(0.5);
@@ -71,6 +86,16 @@ class BootScene extends Phaser.Scene {
 	}
 
 	addSheep() {
+		// Update score
+		this.score++;
+		this.scoreTxt.textContent = "" + this.score;
+
+		window.localStorage.setItem('storedSheep', "" + this.score);
+
+		this.createSheep();
+	}
+
+	createSheep() {
 		const randX = this.getRandomInt(this.gw);
 		const randY = this.getRandomInt(this.gh);
 		
@@ -81,10 +106,6 @@ class BootScene extends Phaser.Scene {
 			x: randX,
 			y: randY
 		});
-
-		// Update score
-		this.score++;
-		this.scoreTxt.textContent = "" + this.score;
 	}
 
 	getRandomInt(max) {
@@ -101,4 +122,4 @@ class BootScene extends Phaser.Scene {
 	}
 }
 
-export default BootScene;
+export default GameScene;

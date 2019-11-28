@@ -1,5 +1,5 @@
 import 'phaser';
-import BootScene from './scenes/BootScene';
+import GameScene from './scenes/GameScene';
 
 import '../styles/styles.scss'
 
@@ -14,7 +14,7 @@ var config = {
 	state: this,
 	antialias: true,
 	tranwsparent: false,
-	scene:  [ BootScene ],
+	scene:  [ GameScene ],
 	backgroundColor: "#6899ff",
 	fps: {
         min: 10,
