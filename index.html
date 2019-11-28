@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>How many sheep do i have?</title>
+		<title>Sheep?</title>
 		<meta name="description" content="Come in, and see how many sheep you have!">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="HandheldFriendly" content="True" />
@@ -14,19 +14,22 @@
 		<link rel="apple-touch-icon" href="icon.png">
 		<!-- Place favicon.ico in the root directory -->
 	  
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/main.css">
+		<!-- <link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/btn.css">
+		<link rel="stylesheet" href="css/game.css"> -->
+
+		<link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
 	</head>
 
-	// Game background
 	<body style="background-color: black;">
+		<!-- // DOM overlay -->
+		<div class="gameOverlay">
+			<p id="scorePre" class="text-center">You have</p>
+			<p id="score" class="text-center">0</p>
+			<p id="scorePost" class="text-center">Sheep</p>
 
-		// 
-		<div style="text-align: center">
-			<span style="color: white;">We dont have any sheep at the moment, come back tomorrow!</span> |
+			<button id="sheepButton" class="btn blue addSheep">Add Sheep</button>
 		</div>
-
 		<div id="content" style="display: block; width: 100%; text-align: center"></div>
-		<!-- <button>click</button> -->
 	</body>
 </html>
