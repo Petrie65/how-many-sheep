@@ -12,6 +12,8 @@ class GameScene extends Phaser.Scene {
 		this.gw = this.sys.game.config.width;
 		this.gh = this.sys.game.config.height;
 
+		this.scale = 1;
+
 		this.score = 0;
 		this.scoreTxt = document.getElementById('score');
 
@@ -41,8 +43,8 @@ class GameScene extends Phaser.Scene {
 		let framConfig = {
 		    frameWidth: 175,
 		    frameHeight: 128,
-		    startFrame: 0,
-			endFrame: 8
+			startFrame: 0,
+			endFrame: 79
 		}
 		this.load.spritesheet('sheep', 'assets/sprites/sheep_175x128.png', framConfig);
 
@@ -56,10 +58,9 @@ class GameScene extends Phaser.Scene {
 		this.cursors = this.input.keyboard.createCursorKeys();
 
 		// Add the background as an tilesprite.
-		const scale = 1;
-		this.add.image(0, 0, 'clouds');
-		this.myTile = this.add.tileSprite(0, 0, this.gw / scale, this.gh / scale, 'grass-tile') 
-			.setScale(scale)
+		const scale = 0.5;
+		this.myTile = this.add.tileSprite(5, 5, this.gw / scale, this.gh / scale, 'grass-tile') 
+			.setScale(this.scale)
 			.setOrigin(0,0);
 
 		// TODO: Create previous sheep
@@ -83,6 +84,21 @@ class GameScene extends Phaser.Scene {
 		// UI input
 		this.addButton = document.getElementById('sheepButton');
 		this.addButton.addEventListener('click', this.addSheep.bind(this));
+	}
+
+	adjustScale(newScale) {
+
+		this.cameras.main.setZoom(this.cameras.main.zoom += newScale);
+
+		// let fin = this.scale += newScale
+		// // this.scale += newScale;
+		// console.log(fin);
+		// this.scale = fin;
+		
+		// this.sheep.scale = fin;
+		// this.sheep.x = this.sheep.x / this.gw * fin;
+
+		// this.myTile.scale = fin;
 	}
 
 	addSheep() {
@@ -117,8 +133,12 @@ class GameScene extends Phaser.Scene {
 		if (this.cursors.left.isDown){ this.sheep.x -= 5;}
 		else if (this.cursors.right.isDown){ this.sheep.x += 5;}
 		// Y input
-		if (this.cursors.up.isDown){ this.sheep.y -= 5;}
-		else if (this.cursors.down.isDown){ this.sheep.y += 5;}
+		// if (this.cursors.up.isDown){ this.sheep.y -= 5;}
+		// else if (this.cursors.down.isDown){ this.sheep.y += 5;}
+		if (this.cursors.up.isDown){ this.adjustScale(0.01); }
+		else if (this.cursors.down.isDown){ this.adjustScale(-0.01); }
+
+
 	}
 }
 

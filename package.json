@@ -6,7 +6,8 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.base.js --open",
-		"build": "webpack --config webpack/prod.js ",
+		"build": "webpack --config webpack.base.js",
+		"build:prod": "webpack --config webpack.prod.js",
 		"test": "eslint ./src/**/**.js"
 	},
 	"license": "ISC",
@@ -27,7 +28,7 @@
 		"browser-sync": "^2.26.3",
 		"browser-sync-webpack-plugin": "^2.2.2",
 		"clean-webpack-plugin": "^3.0.0",
-		"copy-webpack-plugin": "^4.5.2",
+		"copy-webpack-plugin": "^4.6.0",
 		"css-loader": "^3.2.0",
 		"eslint": "^5.15.0",
 		"eslint-plugin-import": "^2.14.0",
@@ -41,6 +42,7 @@
 		"webpack": "^4.41.2",
 		"webpack-cli": "^3.1.0",
 		"webpack-dev-server": "^3.9.0",
-		"webpack-merge": "^4.2.2"
+		"webpack-merge": "^4.2.2",
+		"webpack-s3-plugin": "^1.0.3"
 	}
 }

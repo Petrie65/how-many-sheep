@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const S3Plugin = require('webpack-s3-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 var definePlugin = new webpack.DefinePlugin({
 	// WEBGL_RENDERER: true,
@@ -11,17 +13,13 @@ var definePlugin = new webpack.DefinePlugin({
 module.exports = {
 	mode: 'development',
 	devtool: 'eval-source-map',
+	devServer: {
+		liveReload: true
+	},
 	entry: {
 		app: [path.resolve(__dirname, 'src/main.js')],
 		vendor: ['phaser'],
 	},
-	// output: {
-	// 	filename: 'bundle.js',
-	// },
-	// resolve: {
-	// 	// Add `.ts` and `.tsx` as a resolvable extension.
-	// 	extensions: ['.ts', '.tsx', '.js'],
-	// },
 	module: {
 		rules: [
 			{
@@ -49,12 +47,7 @@ module.exports = {
 					// Compiles Sass to CSS
 					'sass-loader',
 				],
-			},
-			// {
-			// 	// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-			// 	test: /\.tsx?$/,
-			// 	loader: 'ts-loader',
-			// },
+			}
 		],
 	},
 	plugins: [
@@ -68,6 +61,10 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.html',
+			favicon: './favicon.ico',
 		}),
+		new CopyPlugin([
+			{ from: 'assets', to: 'assets' }
+		])
 	],
 };

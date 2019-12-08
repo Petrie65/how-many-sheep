@@ -6,7 +6,10 @@ export default class Sheep extends Phaser.GameObjects.Sprite {
 		// Set sheep
 		this.sheep = config.scene.sheep;		
 
-		this.anims.play('sheep-idle-right');
+		// Place sheep behind each other
+		this.depth = this.y;
+
+		this.anims.play('sheep-idle-left');
 	}
 	
     update() {}

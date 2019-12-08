@@ -61,15 +61,14 @@ typings/
 .next
 
 # Editor
+.vscode/
 .vscode/settings.json
 
 
-node_modules/
 dist/
 build/
 dev/
-.vscode/
-.idea
+
 *.log
 src_old
 *.old.js
@@ -83,3 +82,30 @@ dump/
 *.bak*
 *.old*
 higherVolume/
+
+
+*.dll
+*.exe
+.DS_Store
+
+example.tf
+terraform.tfplan
+terraform.tfstate
+bin/
+modules-dev/
+/pkg/
+website/.vagrant
+website/.bundle
+website/build
+website/node_modules
+.vagrant/
+*.backup
+./*.tfstate
+.terraform/
+*.log
+*.bak
+*~
+.*.swp
+*.iml
+*.test
+*.iml
