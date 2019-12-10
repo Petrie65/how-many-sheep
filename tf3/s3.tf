@@ -1,6 +1,6 @@
 # s3 for sites
 resource "aws_s3_bucket" "website" {
-  bucket = "${var.domain-name}"
+  bucket = var.domain-name
   acl    = "public-read"
 
   policy = <<EOF

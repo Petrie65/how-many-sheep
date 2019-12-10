@@ -1,7 +1,7 @@
 # https://westerndevs.com/2018-10-12-cloudfront-terraform/
 
 provider "aws" {
-  region = "${var.region}"
+  region = var.region
   profile = "pvz-dev"
 }
 

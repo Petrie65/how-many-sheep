@@ -1,16 +1,15 @@
 # cloudfront
-
 resource "aws_cloudfront_origin_access_identity" "access_identity" {
   comment = "Access for cloudfront"
 }
 
 resource "aws_cloudfront_distribution" "cf-dist" {
   origin {
-    domain_name = "${aws_s3_bucket.website.bucket_domain_name}"
+    domain_name = aws_s3_bucket.website.bucket_domain_name
     origin_id   = "origin"
 
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.access_identity.cloudfront_access_identity_path}"
+      origin_access_identity = aws_cloudfront_origin_access_identity.access_identity.cloudfront_access_identity_path
     }
   }
 
@@ -45,7 +44,8 @@ resource "aws_cloudfront_distribution" "cf-dist" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${var.ssl-arn}"
+    acm_certificate_arn = var.ssl-arn
+	minimum_protocol_version = "TLSv1.2_2018"
     ssl_support_method  = "sni-only"
   }
 }
